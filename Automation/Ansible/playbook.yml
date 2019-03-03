@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: False
+
+  tasks:
+    - name: Install Apache2 with Ansible
+      apt: name=apache2 state=installed
+
+    - name: Enable and start service Apache2
+      service: name=apache2 enabled=yes state=started

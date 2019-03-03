@@ -1,0 +1,9 @@
+node {
+    stage('Run application') {
+      sh 'hostname'
+    }
+
+    stage('Run acceptance tests') {
+      sh 'echo blue'
+    }
+}

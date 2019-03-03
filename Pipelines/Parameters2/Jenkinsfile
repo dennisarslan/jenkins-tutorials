@@ -1,0 +1,26 @@
+pipeline {
+  agent any
+  parameters {
+    choice(name: 'door_choice',
+      choices: 'one\ntwo\nthree\nfour',
+      description: 'What door do you choose?')
+    booleanParam(name: 'destructive_build',
+      defaultValue: true,
+      description: 'Do you want a destructive build?')
+    string(name: 'sTrAnGePaRaM',
+      defaultValue: 'Dance!',
+      description: 'Do the funky chicken!')
+  }
+  stages {
+    stage('Example') {
+      steps {
+        echo 'Hello World!'
+        echo "Trying: ${params.door_choice}"
+        echo "We can dance: ${params.destructive_build}"
+        echo "The DJ says: ${params.sTrAnGePaRaM}"
+
+        sh "echo fab update --parameter destructive=${params.destructive_build}"
+      }
+    }
+  }
+}

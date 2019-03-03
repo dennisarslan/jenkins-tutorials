@@ -1,0 +1,4 @@
+from fabric import Connection
+result = Connection('centos').run('uname -s')
+msg = "Ran {.command!r} on {.connection.host}, got stdout:\n{.stdout}"
+print(msg.format(result))

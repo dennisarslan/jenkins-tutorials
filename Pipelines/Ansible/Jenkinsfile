@@ -1,0 +1,23 @@
+node {
+
+ 	stage 'Checkout'
+   	checkout scm
+
+  stage('Run Ansible') {
+    wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
+      echo 'something that outputs ansi colored stuff'
+      dir ('Automation/Ansible') {
+        sh 'ANSIBLE_FORCE_COLOR=true ansible-playbook -i inventory.txt playbook.yml'
+      }
+    }
+  }
+
+  stage('Run Serverspec tests') {
+
+    wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm']) {
+      dir ('Automation/Serverspec') {
+        sh 'rake spec'
+      }
+    }
+  }
+}

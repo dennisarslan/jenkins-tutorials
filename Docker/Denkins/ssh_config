@@ -1,0 +1,9 @@
+StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+
+Host centos
+    HostName centos
+    User root
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/id_rsa
+
